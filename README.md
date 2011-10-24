@@ -10,3 +10,5 @@ Paying respect to the [Honor code](https://github.com/gafiatulin/ml-class/wiki/H
 More information about this course you could find on [official website](http://www.ml-class.org/) and in [wiki](https://github.com/gafiatulin/ml-class/wiki).
 
 For information about Octave, download links, installation instruction, etc. go to [GNU/Octave](http://www.gnu.org/software/octave/) or [wiki](https://github.com/gafiatulin/ml-class/wiki/Octave).
+
+Solutions to Linear Regression Programming Exercise had been automatically added, although deadline has been moved. 
