@@ -11,4 +11,6 @@ More information about this course you could find on [official website](http://w
 
 For information about Octave, download links, installation instruction, etc. go to [GNU/Octave](http://www.gnu.org/software/octave/) or [wiki](https://github.com/gafiatulin/ml-class/wiki/Octave).
 
-I'm sorry, but it's not really my fault. Solutions to Linear Regression Programming Exercise had been automatically added, although deadline has been moved. 
+Some thoughts and ideas on second exercise, Logistic Regression, have been added.
+
+Blank for third exercise, Multi-class classification and neural networks, has been added.
