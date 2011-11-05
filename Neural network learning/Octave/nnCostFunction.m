@@ -66,12 +66,11 @@ hidden_layer = sigmoid([ones(m, 1) X] * Theta1');
 output_layer = sigmoid([ones(m, 1) hidden_layer] * Theta2');
 h_x = output_layer';
 
-
-
-
-
-
-
+for iter = 1:num_labels
+  y_k = y == iter;
+  J = J + ((-log(h_x(iter, :)) * y_k - log(1 - h_x(iter, :)) * (1 - y_k)));
+end
+J =  J/m;
 
 
 
