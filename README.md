@@ -18,3 +18,5 @@ Rough draft of digit recognition (Ex 3).
 Blank for 4th exercise, Neural network learning, has been added.
 
 Some attempts on Ex 4.
+
+Some math and logic on why to choose epsilon = 0.12 for Weights Initialization could be found [here](http://jmlr.csail.mit.edu/proceedings/papers/v9/glorot10a/glorot10a.pdf) in section 4.2.1 «Theoretical Considerations and a New Normalized Initialization».
