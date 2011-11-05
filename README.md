@@ -13,4 +13,8 @@ For information about Octave, download links, installation instruction, etc. go 
 
 Solution to second exercise, Logistic Regression, have been added.
 
+Rough draft of digit recognition (Ex 3).
+
 Blank for 4th exercise, Neural network learning, has been added.
+
+Some attempts on Ex 4.
