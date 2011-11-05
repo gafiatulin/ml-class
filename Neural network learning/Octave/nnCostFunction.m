@@ -71,8 +71,7 @@ for iter = 1:num_labels
   J = J + ((-log(h_x(iter, :)) * y_k - log(1 - h_x(iter, :)) * (1 - y_k)));
 end
 J =  J/m;
-
-
+J = J + lambda*(sum(sum(Theta1(:,2:end) .^ 2))+sum(sum(Theta2(:,2:end) .^ 2)))/(2*m);
 
 % -------------------------------------------------------------
 
