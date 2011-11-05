@@ -62,14 +62,9 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-
-
-
-
-
-
-
-
+hidden_layer = sigmoid([ones(m, 1) X] * Theta1');
+output_layer = sigmoid([ones(m, 1) hidden_layer] * Theta2');
+h_x = output_layer';
 
 
 
