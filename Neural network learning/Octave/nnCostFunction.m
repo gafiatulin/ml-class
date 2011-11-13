@@ -62,40 +62,111 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-hidden_layer = sigmoid([ones(m, 1) X] * Theta1');
-output_layer = sigmoid([ones(m, 1) hidden_layer] * Theta2');
-h_x = output_layer';
 
-for iter = 1:num_labels
-  y_k = y == iter;
-  J = J + ((-log(h_x(iter, :)) * y_k - log(1 - h_x(iter, :)) * (1 - y_k)));
-end
-J =  J/m;
-J = J + lambda*(sum(sum(Theta1(:,2:end) .^ 2))+sum(sum(Theta2(:,2:end) .^ 2)))/(2*m);
+% hidden_layer = sigmoid([ones(m, 1) X] * Theta1');
+% output_layer = sigmoid([ones(m, 1) hidden_layer] * Theta2');
+% h_x = output_layer';
+
+% for iter = 1:num_labels
+%  y_k = y == iter;
+%  J = J + ((-log(h_x(iter, :)) * y_k - log(1 - h_x(iter, :)) * (1 - y_k)));
+% end
+% J =  J/m;
+% J = J + lambda*(sum(sum(Theta1(:,2:end) .^ 2))+sum(sum(Theta2(:,2:end) .^ 2)))/(2*m);
 
 
-for t = 1:m
-	a_1 = X(t, :);
-	a_1 = [1 a_1];
-	z_2 = a_1 * Theta1';
-	a_2 = sigmoid(z_2);
-	a_2 = [1 a_2];
-	z_3 = a_2 * Theta2';
-	a_3 = sigmoid(z_3)';
+% for t = 1:m
+%	a_1 = X(t, :);
+%	a_1 = [1 a_1];
+%	z_2 = a_1 * Theta1';
+%	a_2 = sigmoid(z_2);
+%	a_2 = [1 a_2];
+%	z_3 = a_2 * Theta2';
+%	a_3 = sigmoid(z_3)';
 
-	delta_3 = a_3 - (y(t)==[1:num_labels]');
-	delta_2 = (Theta2' * delta_3) .* [1 sigmoidGradient(z_2)]';
+%	delta_3 = a_3 - (y(t)==[1:num_labels]');
+%	delta_2 = (Theta2' * delta_3) .* [1 sigmoidGradient(z_2)]';
   
-	Theta1_grad = Theta1_grad + (delta_2(2:end) * a_1);
-	Theta2_grad = Theta2_grad + (delta_3 * a_2);
-end
+%	Theta1_grad = Theta1_grad + (delta_2(2:end) * a_1);
+%	Theta2_grad = Theta2_grad + (delta_3 * a_2);
+% end
 
-Theta1_grad(:, 1) = Theta1_grad(:, 1) / m;
-Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) / m + ((lambda / m) * Theta1(:, 2:end));
-Theta2_grad(:, 1) = Theta2_grad(:, 1) / m;
-Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) / m + ((lambda / m) * Theta2(:, 2:end));
+% Theta1_grad(:, 1) = Theta1_grad(:, 1) / m;
+% Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) / m + ((lambda / m) * Theta1(:, 2:end));
+% Theta2_grad(:, 1) = Theta2_grad(:, 1) / m;
+% Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) / m + ((lambda / m) * Theta2(:, 2:end));
 
-% -------------------------------------------------------------
+% My solution is -------------------------------------------------------------
+
+
+	X = [ones(m,1) X];
+
+
+	a2 = sigmoid(Theta1 * X');
+	
+	a2 = [ones(m,1) a2'];
+
+	h_theta = sigmoid(Theta2 * a2'); % h_theta equals z3
+
+	yk = zeros(num_labels, m); 
+	
+	for i=1:m,
+  	
+  	yk(y(i),i)=1;
+	
+	end
+
+
+	J = (1/m) * sum ( sum (  (-yk) .* log(h_theta)  -  (1-yk) .* log(1-h_theta) ));
+
+
+
+	t1 = Theta1(:,2:size(Theta1,2));
+	t2 = Theta2(:,2:size(Theta2,2));
+
+	Reg = lambda  * (sum( sum ( t1.^ 2 )) + sum( sum ( t2.^ 2 ))) / (2*m);
+
+	J = J + Reg;
+
+	
+
+	for t=1:m,
+
+
+	a1 = X(t,:); 
+	z2 = Theta1 * a1';
+
+	a2 = sigmoid(z2);
+	a2 = [1 ; a2]; % add bias
+
+	z3 = Theta2 * a2;
+
+	a3 = sigmoid(z3); % final activation layer a3 == h(theta)
+
+	
+	
+	z2=[1; z2];
+
+	delta_3 = a3 - yk(:,t);
+	delta_2 = (Theta2' * delta_3) .* sigmoidGradient(z2);
+
+	delta_2 = delta_2(2:end); 
+
+	Theta1_grad = Theta1_grad + delta_2 * a1; 
+	Theta2_grad = Theta2_grad + delta_3 * a2';
+
+	end;
+
+
+	Theta1_grad(:, 1) = Theta1_grad(:, 1) ./ m;
+	
+	Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) ./ m + ((lambda/m) * Theta1(:, 2:end));
+	
+	
+	Theta2_grad(:, 1) = Theta2_grad(:, 1) ./ m;
+	
+	Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) ./ m + ((lambda/m) * Theta2(:, 2:end));
+
 
 % =========================================================================
 
