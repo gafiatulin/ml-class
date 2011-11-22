@@ -49,9 +49,9 @@ x = zeros(n, 1);
 %
 
 
-
-
-
+for iter = 1:size(word_indices)
+	x(word_indices(iter))=1;
+end
 
 
 
