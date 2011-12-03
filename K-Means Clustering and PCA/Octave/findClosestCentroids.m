@@ -24,12 +24,12 @@ idx = zeros(size(X,1), 1);
 for i=1 : size(X,1)
     mindist = 100000000000000.0; 
 for k=1 : K
-        tmpdist = norm(X(i,:)-centroids(k,:), size(X,2));
-        if(tmpdist <= mindist)
+        tmpdist = norm(X(i,:)-centroids(k,:), size(X,2))^2;
+        if(tmpdist < mindist)
         mindist = tmpdist;
+        idx(i) = k
         end
     end
-idx(i) = mindist;
 end
 
 
