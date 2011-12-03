@@ -65,56 +65,57 @@ end
 % ================== CONFIGURABLES FOR EACH HOMEWORK ==================
 
 function id = homework_id() 
-  id = '6';
+id = '6';
 end
 
 function [partNames] = validParts()
-  partNames = { 'Gaussian Kernel', ...
-                'Parameters (C, sigma) for Dataset 3', ...
-                'Email Preprocessing' ...
-                'Email Feature Extraction' ...
-                };
+partNames = { 'Gaussian Kernel', ...
+    'Parameters (C, sigma) for Dataset 3', ...
+    'Email Preprocessing' ...
+    'Email Feature Extraction' ...
+};
 end
 
 function srcs = sources()
-  % Separated by part
-  srcs = { { 'gaussianKernel.m' }, ...
-           { 'dataset3Params.m' }, ...
-           { 'processEmail.m' }, ...
-           { 'emailFeatures.m' } };
+% Separated by part
+srcs = { { 'gaussianKernel.m' }, ...
+    { 'dataset3Params.m' }, ...
+    { 'processEmail.m' }, ...
+    { 'emailFeatures.m' } };
 end
 
 function out = output(partId)
-  % Random Test Cases
-  x1 = sin(1:10)';
-  x2 = cos(1:10)';
-  ec = 'the quick brown fox jumped over the lazy dog';
-  wi = 1 + abs(round(x1 * 1863));
-  wi = [wi ; wi];
-  if partId == 1
-    sim = gaussianKernel(x1, x2, 2);
-    out = sprintf('%0.5f ', sim);
-  elseif partId == 2
-    load('ex6data3.mat');
-    [C, sigma] = dataset3Params(X, y, Xval, yval);
-    out = sprintf('%0.5f ', C);
-    out = [out sprintf('%0.5f ', sigma)];
-  elseif partId == 3
-    word_indices = processEmail(ec);
-    out = sprintf('%d ', word_indices);
-  elseif partId == 4
-    x = emailFeatures(wi);
-    out = sprintf('%d ', x);
-  end 
+% Random Test Cases
+x1 = sin(1:10)';
+x2 = cos(1:10)';
+ec = 'the quick brown fox jumped over the lazy dog';
+wi = 1 + abs(round(x1 * 1863));
+wi = [wi ; wi];
+if partId == 1
+sim = gaussianKernel(x1, x2, 2);
+out = sprintf('%0.5f ', sim);
+elseif partId == 2
+load('ex6data3.mat');
+[C, sigma] = dataset3Params(X, y, Xval, yval);
+out = sprintf('%0.5f ', C);
+out = [out sprintf('%0.5f ', sigma)];
+elseif partId == 3
+word_indices = processEmail(ec);
+out = sprintf('%d ', word_indices);
+elseif partId == 4
+x = emailFeatures(wi);
+out = sprintf('%d ', x);
+end 
 end
 
 function url = challenge_url()
-  url = 'http://www.ml-class.org/course/homework/challenge';
+url = 'http://www.ml-class.org/course/homework/challenge';
 end
 
 function url = submit_url()
-  url = 'http://www.ml-class.org/course/homework/submit';
+url = 'http://www.ml-class.org/course/homework/submit';
 end
+
 
 % ========================= CHALLENGE HELPERS =========================
 
