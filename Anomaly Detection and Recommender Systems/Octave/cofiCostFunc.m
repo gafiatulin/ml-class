@@ -41,17 +41,7 @@ Theta_grad = zeros(size(Theta));
 %
 
 
-
-
-
-
-
-
-
-
-
-
-
+J = 0.5* sum(((X*Theta' - Y).^2)(R==1));
 
 
 
