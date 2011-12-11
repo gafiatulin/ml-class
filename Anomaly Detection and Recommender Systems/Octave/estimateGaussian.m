@@ -22,7 +22,8 @@ sigma2 = zeros(n, 1);
 %
 
 
-
+mu = mean(X);
+sigma2 = (1-1/m) * var(X);
 
 
 
